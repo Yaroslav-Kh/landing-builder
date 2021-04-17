@@ -73,13 +73,13 @@ class LandingRepository extends BaseRepository implements LandingRepositoryInter
     /**
      * @return mixed
      */
-    public function getByDomain($domain) : array
+    public function getByDomain($domain)
     {
 
         return $this->model->select('image','title','subtitle','content','template','font_color')
             ->where('domain', $domain)
             ->first()
-            ->toArray() ?? [];
+            ->toArray();
     }
 
     /**
