@@ -17,6 +17,6 @@ interface LandingRepositoryInterface
 
     public function getTemplates();
 
-
+    public function getLandingsCount();
 
 }

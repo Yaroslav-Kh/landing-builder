@@ -75,10 +75,11 @@ class LandingRepository extends BaseRepository implements LandingRepositoryInter
      */
     public function getByDomain($domain) : array
     {
+
         return $this->model->select('image','title','subtitle','content','template','font_color')
             ->where('domain', $domain)
             ->first()
-            ->toArray();
+            ->toArray() ?? [];
     }
 
     /**
@@ -99,5 +100,14 @@ class LandingRepository extends BaseRepository implements LandingRepositoryInter
         }
 
         return $sql->count();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLandingsCount()
+    {
+
+        return Landing::count();
     }
 }

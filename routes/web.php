@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Pages\LandingController;
 
-Route::domain('landings-local.jun')->group(function () {
-    Route::redirect('/', '/login');
+Route::domain('landings.jun')->group(function () {
+    Route::redirect('/', '/login')->name('home');
 });
 
 $domains = \App\Models\Domain::select('domain')->get()->toArray();

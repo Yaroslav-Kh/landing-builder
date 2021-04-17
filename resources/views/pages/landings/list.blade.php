@@ -17,7 +17,7 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $landing['title'] }}</h5>
-                                        <a href="http://{{ $landing['domain'] }}/" class="btn btn-success" target="_blank">You domain</a>
+                                        <a href="http://{{ $landing['domain'] }}/" class="btn btn-success" target="_blank">Your domain</a>
                                     </div>
                                 </div>
                             </div>

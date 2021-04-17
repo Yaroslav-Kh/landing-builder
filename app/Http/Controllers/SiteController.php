@@ -13,9 +13,14 @@ class SiteController extends Controller
     public function __construct(LandingRepositoryInterface $landingRepository)
     {
         $this->landingRepository = $landingRepository;
+
     }
 
     public function index(Request $request) {
+
+        if (!$this->landingRepository->getLandingsCount()) {
+            return redirect()->route('home');
+        }
 
         $landing = $this->landingRepository->getByDomain($request->getHost());
 
