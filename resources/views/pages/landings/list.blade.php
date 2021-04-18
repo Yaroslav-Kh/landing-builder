@@ -4,6 +4,14 @@
 
 @section('content')
     <div class="container">
+        <br>
+        @if(session('success'))
+            <div class=" alert alert-success " role="alert">
+                <div class="alert-content">
+                    <p>{{ session('success') }}</p>
+                </div>
+            </div>
+        @endif
         <h3 class="mt-3 mb-3">Your landing</h3>
         <div class="card">
             <div class="card-body">

@@ -18,11 +18,10 @@ class SiteController extends Controller
 
     public function index(Request $request) {
 
-        if (!$this->landingRepository->getLandingsCount()) {
+        $landing = $this->landingRepository->getByDomain($request->getHost());
+        if (!$landing) {
             return redirect()->route('home');
         }
-
-        $landing = $this->landingRepository->getByDomain($request->getHost());
 
         return view('templates.'.$landing['template'], [
             'landing'=> $landing

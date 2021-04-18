@@ -7,6 +7,7 @@ use App\Http\Requests\LandingRequest;
 use App\Models\Domain;
 use App\Models\Landing;
 
+use App\Repository\DomainRepositoryInterface;
 use App\Repository\LandingRepositoryInterface;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -20,10 +21,12 @@ class LandingController extends Controller
 {
 
     private LandingRepositoryInterface $landingRepository;
+    private DomainRepositoryInterface $domainRepository;
 
-    public function __construct(LandingRepositoryInterface $landingRepository)
+    public function __construct(LandingRepositoryInterface $landingRepository, DomainRepositoryInterface $domainRepository)
     {
         $this->landingRepository = $landingRepository;
+        $this->domainRepository = $domainRepository;
     }
 
     /**
@@ -35,7 +38,7 @@ class LandingController extends Controller
     {
 
         return view('pages.landings.list', [
-            'free_domains' => $this->landingRepository->getDomainsCount(),
+            'free_domains' => $this->domainRepository->getDomainsCount(),
             'landings' => $this->landingRepository->all()
         ]);
     }
@@ -48,7 +51,7 @@ class LandingController extends Controller
     public function create()
     {
         return view('pages.landings.form', [
-            'domains'   => $this->landingRepository->getDomains(),
+            'domains'   => $this->domainRepository->getDomains(),
             'templates' => $this->landingRepository->getTemplates(),
         ]);
     }

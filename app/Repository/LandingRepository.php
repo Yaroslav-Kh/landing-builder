@@ -30,28 +30,6 @@ class LandingRepository extends BaseRepository implements LandingRepositoryInter
         return $this->model->select('image','title','domain')->where('user_id', Auth::id())->get()->toArray() ?? [];
     }
 
-
-    /**
-     * @return mixed
-     */
-    public function getDomains(): array
-    {
-
-        $landings = Landing::select('domain')->get()->toArray();
-
-        if (empty($landings)) {
-            return Domain::select('domain')->get()->toArray() ?? [];
-        }
-
-        $sql = Domain::select('domain');
-
-        foreach ($landings as $landing) {
-            $sql->whereNotIn('domain',[$landing['domain']]);
-        }
-
-        return $sql->get()->toArray();
-    }
-
     /**
      * @return mixed
      */
@@ -70,44 +48,4 @@ class LandingRepository extends BaseRepository implements LandingRepositoryInter
         return $templates;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getByDomain($domain)
-    {
-
-        return $this->model->select('image','title','subtitle','content','template','font_color')
-            ->where('domain', $domain)
-            ->first()
-            ->toArray();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDomainsCount()
-    {
-        $landings = Landing::select('domain')->get()->toArray();
-
-        if (empty($landings)) {
-            return Domain::select('domain')->count();
-        }
-
-        $sql = Domain::select('domain');
-
-        foreach ($landings as $landing) {
-            $sql->whereNotIn('domain',[$landing['domain']]);
-        }
-
-        return $sql->count();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLandingsCount()
-    {
-
-        return Landing::count();
-    }
 }

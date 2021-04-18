@@ -15,6 +15,7 @@
             <!-- Photo -->
             <div>
                 <x-label for="photo" :value="__('Photo')" />
+                <small style="display: block">Maximum width and height - 250px</small>
 
                 <x-input id="photo" class="block mt-1 w-full" type="file" name="photo" :value="old('photo')" accept="image/png,image/jpeg" required autofocus />
             </div>

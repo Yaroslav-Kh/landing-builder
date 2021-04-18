@@ -9,14 +9,6 @@ interface LandingRepositoryInterface
 
     public function all();
 
-    public function getDomains();
-
-    public function getDomainsCount();
-
-    public function getByDomain($domain);
-
     public function getTemplates();
-
-    public function getLandingsCount();
 
 }
